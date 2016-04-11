@@ -1,0 +1,7 @@
+<%= link_to "Back to Home Page", movies_path %><br/>
+<%= link_to "Create a User", new_user_path %>
+<%= paginate @users %>
+<% @users.each do |user| %>
+  <h2><%= link_to user.email, admin_user_path(user) %></h2><%= link_to "switch", admin_user_switch_path(user) %>
+  <hr>
+<% end %>

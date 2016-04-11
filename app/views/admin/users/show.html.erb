@@ -1,0 +1,10 @@
+<%= link_to "Back to Home Page", movies_path %><br/>
+<h2><%= @user.email %></h2>(<%= link_to "edit", edit_admin_user_path(@user) %>, <%= link_to "delete", admin_user_path(@user), method: :delete, data: {confirm: "You sure?"} %>)</h2>
+<%= link_to "switch", admin_user_switch_path(@user) %>
+<h3>user created on <%= formatted_date(@user.created_at) %></h3>
+<h3>last updated on <%= formatted_date(@user.updated_at) %></h4>
+<p><%= @user.full_name %></p>
+<% if @user.admin %>
+  <p>is a registered admin</p>
+<% end %>
+<hr>

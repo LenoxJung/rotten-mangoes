@@ -1,0 +1,13 @@
+<%= link_to "Back to Home Page", movies_path %><br/>
+
+<% @users.each do |user| %>
+  <h2><%= link_to user.email, user_path(user) %></h2>
+  <h2><%= user.email %></h2>
+  <h3>user created at<%= formatted_date(user.created_at) %></h3>
+  <h3>last updated at<%= formatted_date(user.updated_at) %></h4>
+  <p><%= user.full_name %></p>
+  <% if user.admin %>
+    <p>is a registered admin</p>
+  <% end %>
+  <hr>
+<% end %>

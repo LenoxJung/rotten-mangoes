@@ -1,0 +1,15 @@
+<footer>
+  <small>
+    <% if current_user %>
+      Signed in as <%= current_user.full_name %> (<%= link_to "Log out", session_path("current"), method: :delete %>)
+      <% if !session[:admin_id].nil? %>
+        <%= link_to "Back to Admin", admin_user_switchback_path(session[:admin_id]) %>
+      <% end %>
+      <% if current_user && current_user.admin %>
+        <%= link_to "admin", admin_users_path %>
+      <% end %>
+    <% else %>
+      <%= link_to "Log In", new_session_path %> | <%= link_to "Sign Up", new_user_path %>
+    <% end %>
+  </small>
+</footer>
