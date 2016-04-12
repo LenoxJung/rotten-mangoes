@@ -12,8 +12,14 @@ class Movie < ActiveRecord::Base
   validates :release_date, presence: true
   validate :release_date_is_in_the_past
 
+  scope :short_movies, -> { where('runtime_in_minutes<=90') }
+
   def review_average
-    reviews.sum(:rating_out_of_ten)/reviews.size unless reviews.size == 0
+    if reviews.size == 0
+      0
+    else
+      reviews.sum(:rating_out_of_ten)/reviews.size
+    end
   end
 
   protected

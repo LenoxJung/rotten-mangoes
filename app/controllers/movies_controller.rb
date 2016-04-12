@@ -11,11 +11,21 @@ class MoviesController < ApplicationController
     if params[:duration].present?
       case params[:duration]
       when '0'
-        @movies = @movies.where('runtime_in_minutes<=90')
+        @movies = @movies.short_movies
       when '1'
         @movies = @movies.where('runtime_in_minutes>90 AND runtime_in_minutes <= 120')
       when '2'
         @movies = @movies.where('runtime_in_minutes>120') 
+      end
+    end
+    if params[:sort].present?
+      case params[:sort]
+      when '0'
+        @movies.sort_by! {|movie| -movie.review_average}
+      when '1'
+        @movies = @movies.order('title asc')
+      when '2'
+        @movies = @movies.order('release_date desc')
       end
     end
   end

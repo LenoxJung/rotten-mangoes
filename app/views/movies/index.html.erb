@@ -8,6 +8,11 @@
   <%= submit_tag 'search' %>
 <% end %>
 
+<%= form_tag(movies_path, method: :get) do %>
+  <%= select_tag :sort, options_for_select([["average review",0],["title",1],["newest",2]]) %>
+  <%= submit_tag 'sort' %>
+<% end %>
+
 <% @movies.each do |movie| %>
   <%= link_to image_tag(movie.poster_url(:thumb)), movie_path(movie) %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>

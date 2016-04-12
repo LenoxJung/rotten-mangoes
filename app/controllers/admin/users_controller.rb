@@ -14,6 +14,7 @@ class Admin::UsersController < ApplicationController
       review.destroy
     end
     @user.destroy
+    UserMailer.delete_email(@user)
     redirect_to admin_users_path
   end
 
