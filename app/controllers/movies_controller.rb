@@ -13,9 +13,9 @@ class MoviesController < ApplicationController
       when '0'
         @movies = @movies.short_movies
       when '1'
-        @movies = @movies.where('runtime_in_minutes>90 AND runtime_in_minutes <= 120')
+        @movies = @movies.medium_movies
       when '2'
-        @movies = @movies.where('runtime_in_minutes>120') 
+        @movies = @movies.long_movies 
       end
     end
     if params[:sort].present?

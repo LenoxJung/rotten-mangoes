@@ -13,6 +13,8 @@ class Movie < ActiveRecord::Base
   validate :release_date_is_in_the_past
 
   scope :short_movies, -> { where('runtime_in_minutes<=90') }
+  scope :medium_movies, -> { where('runtime_in_minutes>90 AND runtime_in_minutes <= 120')}
+  scope :long_movies, -> { where('runtime_in_minutes>120')}
 
   def review_average
     if reviews.size == 0
